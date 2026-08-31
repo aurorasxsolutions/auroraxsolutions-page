@@ -1,0 +1,65 @@
+/* ==========================================================================
+   AXS — animations.css
+   Keyframes + scroll-reveal utility classes
+   ========================================================================== */
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Small stagger for groups of siblings revealed together */
+.cards-grid .card[data-reveal].is-visible,
+.solutions-showcase .card[data-reveal].is-visible { transition-delay: calc(var(--stagger, 0) * 45ms); }
+.timeline__step[data-reveal].is-visible { transition-delay: calc(var(--stagger, 0) * 55ms); }
+.projects__grid .project-card[data-reveal].is-visible { transition-delay: calc(var(--stagger, 0) * 50ms); }
+.why-grid .why-item[data-reveal].is-visible { transition-delay: calc(var(--stagger, 0) * 50ms); }
+
+/* ---------- About visual ---------- */
+@keyframes dual-circle-float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -12px) scale(1.04); }
+}
+@keyframes dual-circle-float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-16px, 14px) scale(1.05); }
+}
+
+/* ---------- Scroll hint ---------- */
+@keyframes scroll-hint {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(10px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- Logo marquee ---------- */
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 9px)); }
+}
+
+/* ---------- Mobile menu ---------- */
+@keyframes menu-slide-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
